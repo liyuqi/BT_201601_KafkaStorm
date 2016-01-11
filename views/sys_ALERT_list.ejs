@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% //var util = require('util');%>
+</head>
+<body>
+
+<fieldset>
+    <legend>列表 Alert</legend>
+</fieldset>
+<!--<form class="form-horizontal" method="post">-->
+    <!--<h3> 總量 : <%= totalcount %>筆規則-->
+        <!--&lt;!&ndash;<button type="submit" class="btn btn-primary">show</button>&ndash;&gt;-->
+    <!--</h3>-->
+<!--</form>-->
+
+<p></p>
+
+<% if (resp) { %>
+<!--<h3>顯示結果</h3><br/>-->
+<% if (resp.length == 0) { %>
+<h4>查無資料!</h4>
+<% } else{ %>
+
+<h4> 回傳 <%= resp.length %> 筆Rule</h4>
+
+<table class="table table-hover table-condensed">
+    <caption></caption>
+    <thead>
+    <tr>
+    <tr>
+        <th></th>
+        <th>Rule</th>
+        <!--<th>JSON</th>-->
+        <th>Show</th>
+        <th>Del</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <% var i=1; %>
+    <% resp.forEach( function(docs){ %>
+    <tr>
+        <td><%= i++ %></td>
+        <td><%# docs.event %>{identifier:<%= docs.event.identifier %>,message:<%= docs.event.message %>}</td>
+        <!--<td><%# docs.event.message %></td>-->
+        <td><!--<button class="btn btn-mini" type="button">--><a href="/sys_ALERT_display?_id=<%= docs._id %>">show</a><!--</button>--></td>
+        <td><!--<button class="btn btn-mini" type="button">--><a href="/sys_ALERT_delete?_id=<%= docs._id %>">Delete</a><!--</button>--></td>
+
+    </tr>
+
+    <% }) %>
+    <%# } %>
+
+    </tbody>
+</table>
+<% } %>
+<% } else { %>
+
+<% } %>
+</body>
+</html>

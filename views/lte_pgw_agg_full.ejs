@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <!--<link href="/stylesheets/c3.css" rel="stylesheet" type="text/css">-->
+    <!--<script src="/javascripts/d3.min.js" charset="utf-8"></script>-->
+    <!--<script src="/javascripts/c3.min.js"></script>-->
+    <script src = ""></script>
+    <script>
+        //$('#search_button').tooltip(options)
+    </script>
+</head>
+<body>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <legend>查詢 CDR <i class="icon-chevron-down"></i></legend>
+        </div>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in"> <!--"collapse in">-->
+        <div class="accordion-inner">
+
+            <form id="submitForm" class="form-horizontal" method="post">
+                <fieldset>
+                    <!--<legend>查詢 CDR</legend>-->
+
+                    <table class="table table-hover table-condensed borderless">
+                        <caption></caption>
+                        <thead>
+                        <tr>
+                        <tr>
+                            <th id="name0">名稱</th>
+                            <th id="field0">field</th>
+                            <th id="input0">input</th>
+                            <th id="sample0">sample</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <!--<tr>-->
+                            <!--<td id="name__01">開始時間</td>-->
+                            <!--<td id="field_01"><label for="DATE">DATE</label></td>-->
+                            <!--<td id="input_01"><input type="text" class="input-large" name="DATE" value=<%= query.DATE %>></td>-->
+                            <!--<td id="sample01">2015-11-05</td>&lt;!&ndash;type="date"&ndash;&gt;-->
+                        <!--</tr>-->
+                        <tr>
+                            <td id="name__01">USER</td>
+                            <td id="field_01"><label for="USER">USER</label></td>
+                            <td id="input_01"><input type="text" class="input-large" name="USER" value=<%= query.USER %>></td>
+                            <td id="sample01">user</td><!--type="date"-->
+                        </tr>
+                        <tr>
+                            <td id="name__02">開始時間</td>
+                            <td id="field_02"><label for="DATE_T0">START_TIME</label></td>
+                            <td id="input_02"><input type="text" class="input-large" name="DATE_T0" value=<%= query.DATE_T0 %>></td>
+                            <td id="sample02">2015-11-05</td><!--type="date"-->
+                        </tr>
+                        <tr>
+                            <td id="name__03">結束時間</td>
+                            <td id="field_03"><label for="DATE_T1">END_TIME</label></td>
+                            <td id="input_03"><input type="text" class="input-large" name="DATE_T1" value=<%= query.DATE_T1 %>></td>
+                            <td id="sample03">2015-11-05</td><!--type="date"-->
+                        </tr>
+
+                        <!--<tr>-->
+                            <!--<td id="name__10">號碼</td>-->
+                            <!--<td id="field_10"><label for=>MSISDN</label></td>-->
+                            <!--<td id="input_10"><input type="text" class="input-large" name="SERVED_MSISDN" value=<%= query.SERVED_MSISDN%>></td>-->
+                            <!--<td id="sample10">886921809057</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__11">卡別</td>-->
+                            <!--<td id="field_11"><label for=>SIM_TYPE</label></td>-->
+                            <!--<td id="input_11"><input type="text" class="input-large" name="SIM_TYPE"></td>-->
+                            <!--<td id="sample11">USIM</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__12">網路別</td>-->
+                            <!--<td id="field_12"><label for=>NETWORK</label></td>-->
+                            <!--<td id="input_12"><input type="text" class="input-large" name="NETWORK" value="4G" disabled="disabled"></td>-->
+                            <!--<td id="sample12">4G</td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td id="name__12">手機</td>-->
+                            <!--<td id="field_12"><label for=>VENDOR</label></td>-->
+                            <!--<td id="input_12"><input type="text" class="input-large" name="VENDOR" value=<%= query.VENDOR %>></td>-->
+                            <!--<td id="sample12">Apple</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__13">型號</td>-->
+                            <!--<td id="field_13"><label for=>MODEL</label></td>-->
+                            <!--<td id="input_13"><input type="text" class="input-large" id="MODEL" name="MODEL" value=<%= query.MODEL %>></td>-->
+                            <!--<td id="sample13">iPhone 6s Plus_A1699</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__14">縣市</td>-->
+                            <!--<td id="field_14"><label for=>COUNTY</label></td>-->
+                            <!--<td id="input_14"><input type="text" class="input-large" id="COUNTY" name="COUNTY" value=<%= query.COUNTY %>></td>-->
+                            <!--<td id="sample14">新北市</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__15">頻段別</td>-->
+                            <!--<td id="field_15"><label for=>BAND</label></td>-->
+                            <!--<td id="input_15"><input type="text" class="input-large" id="BAND" name="BAND" value=<%= query.BAND %>></td>-->
+                            <!--<td id="sample15">L700,L1800</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__19">統計</td>-->
+                            <!--<td id="field_19"><label for=>stat</label></td>-->
+                            <!--<td id="input_19">-->
+                                <!--<input type="radio" name="stat" value="3" disabled="disabled">卡別<br>-->
+                                <!--<input type="radio" name="stat" value="4" disabled="disabled">卡別, 網路別,<br>-->
+                                <!--<input type="radio" name="stat" value="1" disabled="disabled">卡別, 網路別, 縣市<br>-->
+                                <!--<input type="radio" name="stat" value="5" disabled="disabled">卡別, 網路別, 縣市, 頻段別<br>-->
+                                <!--<input type="radio" name="stat" value="2" disabled="disabled">卡別, 網路別, 手機, 型號, 頻段別<br>-->
+                            <!--</td>-->
+                            <!--<td id="sample19"></td>-->
+                        <!--</tr>-->
+                        </tbody>
+                    </table>
+
+                    <div class="form-actions">
+                        <button id="search_button" type="submit" class="btn btn-primary">search</button>
+                    </div>
+                </fieldset>
+                <!--<input id="currentPage" type="hidden" name="page" value=<%# page %>>&lt;!&ndash;type="hidden"&ndash;&gt;-->
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<p></p>
+
+<% if (filenames) { %>
+    <h3>統計輸出 : </h3>
+    <div><%= new Date(new Date().getTime()+8*60*60*1000).toJSON() %></div>
+    <% for(var f in filenames){ %>
+        <div><%= filenames[f] %></div>
+    <%}%>
+
+<% } else { %>
+    <h3>總量 : <%= totalcount!=null ? totalcount :"" %>筆資料</h3>
+<% } %>
+
+</body>
+</html>

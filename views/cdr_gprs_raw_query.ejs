@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <!--<link href="/stylesheets/c3.css" rel="stylesheet" type="text/css">-->
+    <!--<script src="/javascripts/d3.min.js" charset="utf-8"></script>-->
+    <!--<script src="/javascripts/c3.min.js"></script>-->
+    <script src = ""></script>
+    <script>
+        $('#search_button').tooltip(options)
+    </script>
+</head>
+<body>
+
+<div class="accordion-group">
+    <div class="accordion-heading">
+        <div class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            <legend>查詢 CDR <i class="icon-chevron-down"></i></legend>
+        </div>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in"> <!--"collapse in">-->
+        <div class="accordion-inner">
+
+            <form id="submitForm" class="form-horizontal" method="post">
+                <fieldset>
+                    <!--<legend>查詢 CDR</legend>-->
+
+                    <table class="table table-hover table-condensed borderless">
+                        <caption></caption>
+                        <thead>
+                        <tr>
+                        <tr>
+                            <th id="name0">名稱</th>
+                            <th id="field0">field</th>
+                            <th id="input0">input</th>
+                            <th id="sample0">sample</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <!--<tr>-->
+                            <!--<td id="name__01">開始時間</td>-->
+                            <!--<td id="field_01"><label for="G_RECORD_OPENING_TIME">G_RECORD_OPENING_TIME</label></td>-->
+                            <!--<td id="input_01"><input type="text" class="input-large" name="G_RECORD_OPENING_TIME" value=<%= query.G_RECORD_OPENING_TIME %>></td>-->
+                            <!--<td id="sample01">2015-11-05</td>&lt;!&ndash;type="date"&ndash;&gt;-->
+                        <!--</tr>-->
+                        <tr>
+                            <td id="name__02">開始時間</td>
+                            <td id="field_02"><label for="DATE_T0">START_TIME</label></td>
+                            <td id="input_02"><input type="text" class="input-large" name="DATE_T0" value=<%= query.DATE_T0 %>></td>
+                            <td id="sample02">2015-11-05</td><!--type="date"-->
+                        </tr>
+                        <tr>
+                            <td id="name__03">結束時間</td>
+                            <td id="field_03"><label for="DATE_T1">END_TIME</label></td>
+                            <td id="input_03"><input type="text" class="input-large" name="DATE_T1" value=<%= query.DATE_T1 %>></td>
+                            <td id="sample03">2015-11-05</td><!--type="date"-->
+                        </tr>
+
+                        <tr>
+                            <td id="name__11">號碼</td>
+                            <td id="field_11"><label for=>SERVED_MSISDN</label></td>
+                            <td id="input_11"><input type="text" class="input-large" name="SERVED_MSISDN" value=<%= query.SERVED_MSISDN %>></td>
+                            <td id="sample11">886921809057</td>
+                        </tr>
+
+                        <!--<tr>-->
+                            <!--<td id="name__12">資料型態</td>-->
+                            <!--<td id="field_12"><label for=>RECORD_TYPE</label></td>-->
+                            <!--<td id="input_12"><input type="text" class="input-large" name="RECORD_TYPE" value='19'  disabled="disabled"></td>-->
+                            <!--<td id="sample12">19</td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td id="name__14">縣市</td>-->
+                            <!--<td id="field_14"><label for=>COUNTY</label></td>-->
+                            <!--<td id="input_14"><input type="text" class="input-large" id="COUNTY" name="COUNTY" value=<%= query.COUNTY %>></td>-->
+                            <!--<td id="sample14">台東縣</td>-->
+                        <!--</tr>-->
+
+                        </tbody>
+                    </table>
+
+                    <div class="form-actions">
+                        <button id="search_button" type="submit" class="btn btn-primary">search</button>
+                    </div>
+                </fieldset>
+                <!--<input id="RECORD_TYPE" type="hidden" name="RECORD_TYPE" value='19'>-->
+                <input id="currentPage" type="hidden" name="page" value=<%= page %>><!--type="hidden"-->
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<p></p>
+
+<% if (resp) { %>
+<h3>搜尋結果</h3></br>
+<% if (resp.length == 0) { %>
+<h4> 查無資料!</h4>
+<% } else /*if (resp.length < 20)*/{%>
+
+<% var _pageunit=10;%>
+<h3> 總量 : <%= totalcount %>筆資料, 查詢 :<%= query_count %>筆,  顯示 <%= (page - 1) * _pageunit +1 %>-<%= (page - 1) * _pageunit + resp.length %></h3>
+<!--<h4> 回傳 : <%= totalcount!=null ? totalcount :""  %>筆資料,  顯示前 <%= resp.length %> 筆</h4>-->
+</br></br></br>
+
+
+<% if (page!=1) { %>
+<span class="prepage" value=<%= isFirstPage%>>
+    <a onclick="document.getElementById('currentPage').value='<%= page-1 %>';document.getElementById('submitForm').submit();">
+        <i class="icon-chevron-left"></i>上頁 </a></span>
+<% } %>
+
+<% if (query_count!=(page - 1) * _pageunit + resp.length) { %>
+<span class="nextpage" value=<%= isLastPage%>>
+    <a onclick="document.getElementById('currentPage').value='<%= page+1 %>';document.getElementById('submitForm').submit();">下頁
+        <i class="icon-chevron-right"></i></a></span>
+<% } %>
+
+<table class="table table-hover table-condensed">
+    <caption></caption>
+    <thead>
+    <tr>
+        <th id="000">#</th>
+        <%
+            var keys = [];
+            for(var k in resp[0]){
+                switch(k) {
+                    case '_id': break;
+//                    case 'RECORD_TYPE':break;
+                    case 'POTENTIAL_DUPLICATE':break;
+                    case 'SYSTEM_TYPE':break;
+                    case 'RECORD_SEQ_NUM':break;
+                    case 'SERVED_IMSI':break;
+//                    case 'RECORD_OPENING_TIME':break;
+                    case 'SERVED_IMEI':break;
+//                    case 'SERVED_MSISDN':break;
+                    case 'SGSN_ADDRESS':break;
+                    case 'GGSN_ADDRESS':break;
+                    case 'CHARGING_ID':break;
+                    case 'APN_NETWORK':break;
+                    case 'APN_OPERATOR':break;
+                    case 'SERVED_PDP_TYPE_ORG':break;
+                    case 'SERVED_PDP_ADDRESS':break;
+                    case 'LOCATION_AREA_CODE':break;
+                    case 'ROUTING_AREA':break;
+                    case 'CELL_IDENTITY':break;
+                    case 'SGSN_CHANGE':break;
+                    case 'S_CHARGING_CHARACTERISTICS':break;
+                    case 'PLMN_ID':break;
+                    case 'NETWORK_INITIATED_PDP_CONTEXT':break;
+                    case 'S_CAUSE_FOR_RECORD_CLOSING':break;
+                    case 'AIR_INTERFACE':break;
+                    case 'S_COMPLETE':break;
+                    case 'S_UPLINK':break;
+                    case 'S_DOWNLINK':break;
+                    case 'S_QOS_REQUESTED01':break;
+                    case 'S_QOS_REQUESTED02':break;
+                    case 'S_QOS_REQUESTED03':break;
+                    case 'S_QOS_REQUESTED04':break;
+                    case 'S_QOS_REQUESTED05':break;
+                    case 'S_QOS_REQUESTED06':break;
+                    case 'S_QOS_REQUESTED07':break;
+                    case 'S_QOS_REQUESTED08':break;
+                    case 'S_QOS_REQUESTED09':break;
+                    case 'S_QOS_REQUESTED10':break;
+                    case 'S_QOS_REQUESTED11':break;
+                    case 'S_QOS_REQUESTED12':break;
+                    case 'S_QOS_REQUESTED13':break;
+                    case 'S_QOS_NEGOTIATED01':break;
+                    case 'S_QOS_NEGOTIATED02':break;
+                    case 'S_QOS_NEGOTIATED03':break;
+                    case 'S_QOS_NEGOTIATED04':break;
+                    case 'S_QOS_NEGOTIATED05':break;
+                    case 'S_QOS_NEGOTIATED06':break;
+                    case 'S_QOS_NEGOTIATED07':break;
+                    case 'S_QOS_NEGOTIATED08':break;
+                    case 'S_QOS_NEGOTIATED09':break;
+                    case 'S_QOS_NEGOTIATED10':break;
+                    case 'S_QOS_NEGOTIATED11':break;
+                    case 'S_QOS_NEGOTIATED12':break;
+                    case 'S_QOS_NEGOTIATED13':break;
+                    case 'S_RECORD_OPENING_TIME':break;
+                    case 'S_TIMESTAMP':break;
+                    case 'S_FIRST_SEQUENCE_NUMBER':break;
+                    case 'S_LAST_SEQUENCE_NUMBER':break;
+                    case 'S_DURATION':break;
+                    case 'G_CHARGING_CHARACTERISTICS':break;
+                    case 'G_CAUSE_FOR_RECORD_CLOSING':break;
+                    case 'G_COMPLETE':break;
+//                    case 'G_UPLINK':break;
+//                    case 'G_DOWNLINK':break;
+                    case 'G_QOS_NEGOTIATED01':break;
+                    case 'G_QOS_NEGOTIATED02':break;
+                    case 'G_QOS_NEGOTIATED03':break;
+                    case 'G_QOS_NEGOTIATED04':break;
+                    case 'G_QOS_NEGOTIATED05':break;
+                    case 'G_QOS_NEGOTIATED06':break;
+                    case 'G_QOS_NEGOTIATED07':break;
+                    case 'G_QOS_NEGOTIATED08':break;
+                    case 'G_QOS_NEGOTIATED09':break;
+                    case 'G_QOS_NEGOTIATED10':break;
+                    case 'G_QOS_NEGOTIATED11':break;
+                    case 'G_QOS_NEGOTIATED12':break;
+                    case 'G_QOS_NEGOTIATED13':break;
+                    case 'G_QOS_NEGOTIATED14':break;
+                    case 'G_QOS_NEGOTIATED15':break;
+//                    case 'G_RECORD_OPENING_TIME':break;
+                    case 'G_TIMESTAMP':break;
+                    case 'G_FIRST_SEQUENCE_NUMBER':break;
+                    case 'G_LAST_SEQUENCE_NUMBER':break;
+                    case 'G_DURATION':break;
+                    case 'CDR_STORED':break;
+                    case 'ICID':break;
+                    case 'SERVICE_CENTRE':break;
+                    case 'RECORDING_ENTITY':break;
+                    case 'CALLING_PARTY_NUMBER':break;
+                    case 'DESTINATION_NUMBER':break;
+                    case 'MESSAGE_REFERENCE':break;
+                    case 'SMS_RESULT':break;
+                    case 'S_UPLINK_KBYTEPS':break;
+                    case 'S_DOWNLINK_KBYTEPS':break;
+                    case 'G_UPLINK_KBYTEPS':break;
+                    case 'G_DOWNLINK_KBYTEPS':break;
+                    case 'DIAGNOSTICS_VALUE':break;
+                    case 'DIAGNOSTICS_INITIATION_CAUSE':break;
+                    case 'DIAGNOSTICS_PROCESS_FAMILYID':break;
+                    case 'DIAGNOSTICS_SGSN_ERROR_CAUSE':break;
+                    case 'G_DIAGNOSTICS':break;
+                    case 'CALLED_SUBS_FIRST_MNC_MCC':break;
+                    case 'CALLED_SUBS_FIRST_LAC':break;
+                    case 'CALLED_SUBS_FIRST_SAC':break;
+
+                    case 'DATETIME':break;
+                    case 'DATE':break;
+                    case 'HOUR':break;
+                    case 'SIM_TYPE':break;
+                    case 'NETWORK':break;
+                    case 'IMEI_VALUE':break;
+//                    case 'VENDOR':break;
+//                    case 'MODEL':break;
+                    case 'SITE_ID':break;
+//                    case 'BTS_ADDRESS':break;
+                    case 'COUNTY':break;
+                    case 'DISTRICT':break;
+//                    case 'SITE_NAME':break;
+
+                    default:
+                        keys.push(k);
+                }
+            }
+
+            for(var k in keys){
+
+        %>
+            <th class="rotate-45"><div><span><%= keys[k] %></span></div></th>
+        <%}%>
+    </tr>
+    </thead>
+    <tbody>
+    <% var i=(page - 1) * _pageunit +1; %>
+    <% resp.forEach( function(body){ %>
+    <tr>
+        <td id="#"><%= i++ %></td>
+
+        <%
+        for(var k in keys){
+        %>
+        <td id="kv<%= k %>"><%= body[''+keys[k]] %></td>
+
+        <%}%>
+
+    </tr>
+    <% }); %>
+    </tbody>
+</table>
+<% } %>
+<% } else { %>
+<h3>總量 : <%= totalcount!=null ? totalcount :"" %>筆資料</h3>
+<% } %>
+
+</body>
+</html>

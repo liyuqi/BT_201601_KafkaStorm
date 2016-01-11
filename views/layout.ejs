@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="utf-8">
+<head>
+    <meta charset="utf-8">
+    <title><%= title %> -</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
+    </style>
+    <link href="/stylesheets/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="/Scripts/bootstrap/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/Images/bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/Images/bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/Images/bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/Images/bootstrap/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="/Images/bootstrap/ico/favicon.png">
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="/">CDR System</a>
+                <div class="nav-collapse collapse">
+                    <span class="navbar-text pull-right">
+                        <!--Logged in as <a href="#" class="navbar-link">Username</a>-->
+                        &copy; BlueTechnology 2015
+                    </span>
+                    <!--<ul class="nav">-->
+                        <!--<li class="active"><a href="/">Home</a></li>-->
+                        <!--&lt;!&ndash;<li><a href="#about">About</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li><a href="#contact">Contact</a></li>&ndash;&gt;-->
+                    <!--</ul>-->
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                   		<li class="active"><a href="/"><i value=" icon-home"></i>首頁</a></li>
+
+                        <li class="nav-header">單門號資料</li>
+                        <!--<li><span class="glyphicon glyphicon-star" aria-hidden="true"></span><a href="/sys_CRUD_insert">新增Log</a></li>-->
+                        <!--<li><a href="/cdr_gprs_raw_query"><i class="icon-search"></i> 查詢 GPRS 單門號</a></li>-->
+                        <!--<li><a href="/lte_pgw_raw_query"><i class="icon-search"></i> 查詢 LTE4G 單門號</a></li>-->
+                        <!--<li><a href="/cdr_gprs_raw_show?p=1"><i class="icon-list-alt"></i> 顯示 GPRS</a></li>-->
+
+                        <!--<li class="nav-header">4G_LTE 查詢</li>-->
+                        <li><a href="/lte_pgw_raw_query"><i class="icon-search"></i> 查詢 4G_LTE </a></li>
+                        <li><a href="/lte_pgw_raw_show?p=1"><i class="icon-list-alt"></i> 顯示 4G_LTE</a></li>
+
+                        <!--<li class="nav-header"> 統計報表</li>-->
+                        <!--<li><a href="/cdr_gprs_agg_query"><i class="icon-search"></i> GPRS 統計條件 </a></li>-->
+                        <!--<li><a href="/cdr_gprs_agg_stats"><i class="icon-list-alt"></i> GPRS 統計 </a></li>-->
+
+                        <!--<li><a href="/lte_pgw_agg_full"><i class="icon-search"></i> 統計 LTE 流量 </a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat"><i class="icon-adjust"></i> LTE 統計 </a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat1"><i class="icon-signal"></i>1 卡別</a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat2"><i class="icon-signal"></i>2 卡別,網路</a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat3"><i class="icon-signal"></i>3 卡別,網路,縣市</a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat4"><i class="icon-signal"></i>4 卡別,網路,縣市,頻段別</a></li>-->
+                        <!--<li><a href="/lte_pgw_agg_stat5"><i class="icon-signal"></i>5 卡別,網路,手機,型號,頻段別</a></li>-->
+
+
+                        <div></div>
+                        <!--<li><a href="/cdr_2g_site_report"><i class="icon-adjust"></i> 2g 基站報表 </a></li>-->
+                        <!--<li><a href="/cdr_2g_phone_report"><i class="icon-adjust"></i> 2g 手機報表 </a></li>-->
+                        <div></div>
+                        <!--<li><a href="/cdr_CRUD_gprs_flow"><i class="icon-adjust"></i> gprs 基站報表 </a></li>-->
+                        <!--<li><a href="/cdr_report_line"><i class="icon-signal"></i> 報表 統計</a></li>-->
+
+                        <!--<li class="nav-header">Control</li>-->
+                        <!--<li><a href="/mongoStatus">Status</a></li>-->
+                        <!--<li><a href="http://172.17.24.196:8081/" target="_blank">mongoDB</a></li>-->
+						<!--<li><a href="http://172.17.24.196:8000/Rmongo/hist" target="_blank">hist</a></li>-->
+                        <!--<li><a href="http://172.17.24.196:8000/Rmongo/showHist" target="_blank">show hist</a></li>-->
+
+                    </ul>
+                </div>
+                <!--/.well -->
+            </div>
+            <!--/span-->
+            <div class="span10">
+
+                <!--/row-->
+                <div class="row-fluid">
+                    <div class="span10">
+                        <!--<h2>Demo</h2>-->
+                        <%- body %>
+                    </div>
+                   
+                    <!--/span-->
+                </div>
+                <!--/row-->
+            </div>
+            <!--/span-->
+        </div>
+        <!--/row-->
+
+        <hr>
+
+        <footer>
+            <!--<p>&copy; BlueTechnology 2015</p>-->
+        </footer>
+
+    </div>
+    <!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+      <script src="/javascripts/jquery-1.11.0.min.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
+
+
+</body>
+</html>
+

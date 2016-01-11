@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <style>
+        .table-header-rotated th.row-header{
+            width: auto;
+        }
+
+        .table-header-rotated td{
+            width: 40px;
+            border-top: 1px solid #dddddd;
+            border-left: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table-header-rotated th.rotate-45{
+            height: 80px;
+            /*width: 40px;*/
+            min-width: 40px;
+            max-width: 40px;
+            position: relative;
+            vertical-align: bottom;
+            padding: 0;
+            font-size: 12px;
+            line-height: 0.8;
+        }
+
+        .table-header-rotated th.rotate-45 > div{
+            position: relative;
+            top: 0px;
+            left: 40px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+            height: 100%;
+            -ms-transform:skew(-45deg,0deg);
+            -moz-transform:skew(-45deg,0deg);
+            -webkit-transform:skew(-45deg,0deg);
+            -o-transform:skew(-45deg,0deg);
+            transform:skew(-45deg,0deg);
+            overflow: hidden;
+            border-left: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            border-top: 1px solid #dddddd;
+        }
+
+        .table-header-rotated th.rotate-45 span {
+            -ms-transform:skew(45deg,0deg) rotate(315deg);
+            -moz-transform:skew(45deg,0deg) rotate(315deg);
+            -webkit-transform:skew(45deg,0deg) rotate(315deg);
+            -o-transform:skew(45deg,0deg) rotate(315deg);
+            transform:skew(45deg,0deg) rotate(315deg);
+            position: absolute;
+            bottom: 30px; /* 40 cos(45) = 28 with an additional 2px margin*/
+            left: -25px; /*Because it looked good, but there is probably a mathematical link here as well*/
+            display: inline-block;
+        // width: 100%;
+            width: 85px; /* 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle*/
+            text-align: left;
+        // white-space: nowrap; /*whether to display in one line or not*/
+        }
+
+        .letterP4 {
+            -webkit-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg);
+            transform: rotate(-90deg);
+            /*color: #000;*/
+            /*font-size: 22px;*/
+            /*height: 200px;*/
+            /*width: 200px;*/
+            /*float: left;*/
+            /*vertical-align:top;*/
+        }
+        .nowrap {
+            white-space:nowrap;
+        }
+    </style>
+</head>
+
+<body id='bodyWrap'>
+
+<fieldset>
+    <legend>最新 log</legend>
+</fieldset>
+<!--<form class="form-horizontal" method="post">-->
+    <!--<h3> 總量 : <%# totalcount %>筆資料-->
+        <!--<button type="submit" class="btn btn-primary">show</button>-->
+    <!--</h3>-->
+<!--</form>-->
+
+<!--<p></p>-->
+
+<% if (resp) { %>
+<!--<h3>顯示結果</h3><br/>-->
+<% if (resp.length == 0) { %>
+<h4>查無資料!</h4>
+<% } else{ %>
+<h3> 總量 : <%= totalcount %>筆資料,  顯示前 <%= resp.length %> 筆</h3>
+<!--<div>-->
+<ul class="pagination">
+    <%# if (!isFirstPage) { %>
+    <li class="prepage"><a href="?p=<%= page-1 %>"><i class="icon-chevron-left"></i>上頁 </a></li>
+    <%# } %>
+    <%# if (!isLastPage) { %>
+    <li class="nextpage"><a href="?p=<%= page+1 %>"> 下頁<i class="icon-chevron-right"></i></a></li>
+    <%# } %>
+</ul>
+<!--</div>-->
+<!--<h4> 回傳最新 <%= resp.length %> 筆</h4>-->
+
+<table class="table table-hover table-condensed" style="white-space: nowrap">
+    <caption></caption>
+    <thead>
+    <tr>
+
+        <th id="000">#</th>
+        <%
+            var keys = [];
+            for(var k in resp[0]){
+                switch(k) {
+                    case '_id': break;
+                    default:
+                        keys.push(k);
+                }
+            }
+                for(var k in keys){
+        %>
+        <th class="rotate-45"><div><span><%= keys[k] %></span></div></th>
+        <%}%>
+
+    </tr>
+
+    </thead>
+    <tbody>
+    <% var i=1; %>
+    <% resp.forEach( function(body){ %>
+    <tr>
+        <td id="#"><%= i++ %></td>
+
+        <% for(var k in keys){ %>
+        <td id="kv<%= k %>"><%= body[''+keys[k]] %></td>
+
+        <%}%>
+
+    </tr>
+    <% }); %>
+    </tbody>
+</table>
+<% } %>
+<% } else { %>
+
+<% } %>
+
+</body>
+</html>

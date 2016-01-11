@@ -1,29 +1,30 @@
-# BT_201503_Syslog
-BT_201503_Syslog
+# BT_201601_KafkaStorm
+BT_201601_KafkaStorm
 
-### 前置準備
+### OS 環境準備
 
-下載BT_201503_Syslog資源
+* 準備nodejs環境 ^0.10.35
 
-```bash 
-$ git clone https://github.com/liyuqi/BT_201503_Syslog
+```bash
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+$ node -v             #^0.10.35
 ```
 
+### nodejs 安裝套件
 
-安裝node_module套件
+* 下載此文件 BT_201601_KafkaStorm
 
 ```bash 
+$ git clone https://github.com/liyuqi/BT_201601_KafkaStorm
+$ cd BT_201601_KafkaStorm
 $ sudo npm install
 ```
 
+### nodejs 修改mongodb設定
 
-開啟mongod，預設27017 port
-
-```bash 
-$ mongod
-```
-
-修改mongodb設定
+* 修改 seeting.js
 
 ```sh
 $ vi ./setting.js    # 替換連線DB
@@ -31,24 +32,25 @@ $ vi ./setting.js    # 替換連線DB
 
 ```js
 module.exports = {
-	cookie_secret : 'secret_meteoric',
-  	db : 'test',
-  	host : '192.168.0.190',
+  	db : 'cep_storm',
+  	host : '172.28.128.22',
 	port : 27017
 };
 ```
+
+* 修改 app.js
 
 ```sh
 $ vi ./app.js       # 替換連線DB
 ```
 
 ```js
-var dbfluentd = monk('192.168.0.190/test');
+var dbfluentd = monk('172.28.128.22/cep_storm');
 ```
 
-### 開始使用SYSLOG CRUD功能
+### 開始使用 介面
 
-開啟app
+* 開啟app
 
 ```bash
 $ node app.js
@@ -56,28 +58,5 @@ $ node app.js
 
 ### Log part
 
-新增 Log
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_CRUD_insert.png)
-
-查詢 Log
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_CRUD_query.png)
-
 顯示 Log
 ![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_CRUD_query_result.png)
-
-最新 Log
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_CRUD_show_pagging.png)
-
-### Alert part
-
-設定 Alert
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_ALERT_insert.png)
-
-列表 Alert
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_ALERT_list.png)
-
-顯示 Alert (60sec)
-![Image text](https://github.com/liyuqi/BT_201503_Syslog/blob/master/example/syslog_ALERT_display.png)
-
-流量 Alert
-![Image text](https://github.com/liyuqi/Syslog0130/blob/master/example/syslog_ALERT_event.png)

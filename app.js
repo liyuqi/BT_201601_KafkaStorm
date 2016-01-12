@@ -32,7 +32,7 @@ var monk = require('monk');
 //var dbCDR = monk('192.168.0.196:40000/cdr');
 //var url = 'mongodb://127.0.0.1:27017/cep2';
 //var dbCDR = MongoClient.connect(url);
-var dbCDR = monk('mongodb://127.0.0.1:27017/cep_storm');
+var dbCDR = monk('mongodb://172.28.128.22:27017/cep_storm');
 //var dbCDR = monk('127.0.0.1:27017/cep2');
 //var dbCDR = monk('mognodb://172.27.21.14:40000/cep2');
 
@@ -97,7 +97,7 @@ app.post('/cdr_gprs_raw_query', cdr_gprs.cdr_gprs_raw_query(dbCDR));
 
 //================================================= L T E 4G ============================
 //app.get('/lte_pgw_query', lte_pgw.index);
-app.get('/lte_pgw_raw_show', 	cdr_gprs.cdr_CRUD_show_pagging(dbCDR));
+app.get('/lte_pgw_raw_show', 	lte_pgw.cdr_CRUD_show_pagging(dbCDR));
 //app.get('/lte_pgw_raw_show', 	lte_pgw.lte_pgw_raw_show(dbCDR));
 app.get('/lte_pgw_raw_query', 	lte_pgw.lte_pgw_raw_show(dbCDR));
 app.post('/lte_pgw_raw_query', 	lte_pgw.lte_pgw_raw_query(dbCDR));

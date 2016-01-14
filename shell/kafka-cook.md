@@ -58,14 +58,14 @@ kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginni
 * 查看 topic:kafkatest
 
 `kafka-topics.sh --list --zookeeper localhost:2181 kafkatest`
-
 * 描述 topic:kafkatest
+
 `kafka-topics.sh --describe --zookeeper localhost:2181 --topic kafkatest`
-
 * 建立 rs topic
-`kafka-topics.sh --create --zookeeper localhost:2181 -replication-factor 3 --partitions 1 --topic rskafka`
 
+`kafka-topics.sh --create --zookeeper localhost:2181 -replication-factor 3 --partitions 1 --topic rskafka`
 * 描述 rs topic
+
 `kafka-topics.sh --describe --zookeeper localhost:2181 --topic rskafka`
 
 >Topic:replicatedkafkatest
